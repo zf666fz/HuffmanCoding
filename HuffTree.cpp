@@ -39,8 +39,6 @@ void traverse(HuffNode<T>* node, string code)
 	if (node->isLeaf())
 	{
 		node->setCode(code);
-		cout << node->val() << " ";//测试
-		cout << node->getCode() << endl;
 	}
 	else
 	{
@@ -54,6 +52,7 @@ void traverse(HuffNode<T>* node, string code)
 template<class T>
 void treeTocodeMap(HuffNode<T>* root)
 {
+	
 	if (root == NULL)	return;//空则返回
 	if (root->isLeaf())//叶节点存入编码字典中
 	{

@@ -12,6 +12,3 @@ string get_path();
 
 //读文件并将文件各字符数存储在次数字典中
 void fileByteNumber();
-
-//写编码文件
-void writeEncodeFile();

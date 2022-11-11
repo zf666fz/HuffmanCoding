@@ -7,6 +7,7 @@ using namespace std;
 
 extern std::map<byte, int>numberMap;//存储输入文件中个字符数的字典
 extern string in_file_name;//输入文件的名字
+extern std::map<byte, std::string>codeMap;//存储哈夫曼编码表的字典
 
 //将一个LPCWSTR转换为string
 string Lpcwstr2String(LPCWSTR lps) 
@@ -61,6 +62,7 @@ string get_path()
 //读文件并将文件各字符数存储在次数字典中
 void fileByteNumber()
 {
+	//numberMap.clear();
 	string s = "";
 	s = get_path();
 	ifstream in_file(s, ios::in | ios::binary);//以二进制形式读文件
@@ -78,12 +80,12 @@ void fileByteNumber()
 	}
 	while (in_file.peek() != EOF)//按字节读二进制文件
 	{
-		in_file.read((char*)&c, 1);
-		byte str = (byte)c;
+		in_file.read((char*)&c, sizeof(c));
+		byte bt = (byte)c;
 		bool have = false;//记录字典中是否有某一字符键值对的变量
 		for (auto iter = numberMap.begin(); iter != numberMap.end(); ++iter) 
 		{
-			if (iter->first == str) //若字典中有某一字符的键值对则出现次数加一，并标记have
+			if (iter->first == bt) //若字典中有某一字符的键值对则出现次数加一，并标记have
 			{
 				iter->second++;
 				have = true;
@@ -91,18 +93,13 @@ void fileByteNumber()
 		}
 		if (!have)//若字典中没有该字符键值对则创建
 		{
-			numberMap[str] = 1;
+			numberMap[bt] = 1;
 		}
 	}
-	for (auto iter = numberMap.begin(); iter != numberMap.end(); ++iter)//测试numberMap
-	{
-		cout << iter->first << " " << iter->second << endl;
-	}
+	//for (auto iter = numberMap.begin(); iter != numberMap.end(); ++iter)//测试numberMap
+	//{
+	//	cout << iter->first << " " << iter->second << endl;
+	//}
 	in_file.close();//关闭文件流
 }
 
-//写编码文件
-void writeEncodeFile()
-{
-
-}

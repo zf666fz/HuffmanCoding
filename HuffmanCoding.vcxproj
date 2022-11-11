@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Decode.cpp" />
     <ClCompile Include="Encode.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HuffTree.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Decode.h" />
     <ClInclude Include="Encode.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="HuffTree.h" />

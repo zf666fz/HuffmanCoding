@@ -64,23 +64,6 @@ public:
 		if (n != 0) siftdown(0); //下沉跟元素
 		return Heap[n]; //返回删除的元素
 	}
-	//移除特定位置的元素
-	T remove(int pos) 
-	{
-		assert((pos >= 0) && (pos < n));
-		if (pos == (n - 1)) n--; //若移除最后一个元素，只需将堆的最大元素数目减少一个
-		else
-		{
-			Swap(Heap, pos, --n); //交换特定位置的元素与末尾元素
-			while ((pos != 0) &&(Heap[pos]->weight() < Heap[parent(pos)]->weight())) //若子节点比父节点大则上升
-			{
-				swap(Heap, pos, parent(pos)); 
-				pos = parent(pos);
-			}
-			if (n != 0) siftdown(pos); //下沉
-		}
-		return Heap[n];
-	}
 };
 
 //抽象节点类
@@ -194,7 +177,8 @@ public:
 	HuffNode<T>* root() { return Root; }
 	//返回跟权重
 	int weight() { return Root->weight(); }
-	
+	//清空哈夫曼树
+	void clear() { Root = NULL; }
 };
 
 //构建哈夫曼树
